@@ -25,6 +25,9 @@ class AppBarNotifier extends StateNotifier<double> {
   }
 }
 
+//* AppBar 滚动状态
+final appBarScrolledProvider = StateProvider<bool>((ref) => false);
+
 // 异步请求用户信息
 final userProvider = FutureProvider<User>((ref) async {
   final api = ApiService();

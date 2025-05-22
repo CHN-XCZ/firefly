@@ -1,44 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+
 import '../providers/app_providers.dart';
 import 'widgets/flexible_app_bar.dart';
 import 'widgets/flexible_scaffold.dart';
 
-class UserPage extends ConsumerWidget {
+class UserPage extends HookConsumerWidget {
   const UserPage({super.key});
-
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userAsync = ref.watch(userProvider);
 
+    final scrollController = useScrollController(); // ✅ 持久且自动释放
+
     return userAsync.when(
       data: (user) {
-        final scrollController = ScrollController();
-
         return FlexibleScaffold(
-          appBar: FlexibleAppBar(
+          appBar: SImprovisationAppBar(
             scrollController: scrollController,
-            title: "你好",
-            backgroundColor: Colors.white,
-            initialBackgroundColor: Colors.transparent,
-            scrollTriggerOffset: 100,
-            showBackButton: true,
-            onBack: () => Navigator.pop(context),
+            ref: ref,
+            title: '你好',
+            scrollTriggerOffset: 30,
           ),
-          body: Container(
-            color: Colors.pink,
-            child: ListView(
-              controller: scrollController,
-              padding:
-                  EdgeInsets.only(top: MediaQuery.of(context).padding.top + 40),
-              children: [
-                Container(
-                    color: Colors.white, child: Text('Name: ${user.name}')),
-                Text('Email: ${user.email}'),
-                for (int i = 0; i < 50; i++) Text('Email: ${user.email} $i'),
-              ],
+          body: ListView(
+            controller: scrollController,
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).padding.top + 40,
             ),
+            children: [
+              Container(
+                color: Colors.white,
+                padding: const EdgeInsets.all(16),
+                child: Text('Name: ${user.name}'),
+              ),
+              Text('Email: ${user.email}'),
+              for (int i = 0; i < 50; i++)
+                Text('Email: ${user.email} $i'),
+            ],
           ),
         );
       },

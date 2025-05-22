@@ -12,11 +12,14 @@ dependencies:
   flutter_riverpod: ^2.5.1              #? 状态管理
   go_router: ^13.2.0                   #? 路由管理
   dio: ^5.4.0                          #? 网络请求
-  json_annotation: ^4.9.0              #? 
-  freezed_annotation: ^2.4.1
-  shared_preferences: ^2.2.2
-  cupertino_icons: ^1.0.0
-
+  json_annotation: ^4.9.0              #? json序列化
+  freezed_annotation: ^2.4.1          #? 数据类生成
+  shared_preferences: ^2.2.2         #? 本地存储
+  cupertino_icons: ^1.0.0           #? ios图标
+  flutter_hooks: ^0.20.3           #? hooks
+  hooks_riverpod: ^2.5.1          #? hooks和riverpod结合
+  flutter_screenutil: ^5.9.0     #? 屏幕适配
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

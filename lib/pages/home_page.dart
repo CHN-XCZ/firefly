@@ -4,6 +4,8 @@ import '../providers/app_providers.dart';
 import 'package:go_router/go_router.dart';
 
 import '../theme/theme_provider.dart';
+import 'widgets/flexible_app_bar.dart';
+import 'widgets/flexible_scaffold.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -12,10 +14,10 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final count = ref.watch(counterProvider);
     final themeMode = ref.watch(themeModeProvider);
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Riverpod Demo'),
-        backgroundColor: Colors.green,
+    return FlexibleScaffold(
+      appBar: ImprovisationAppBar(
+        ref: ref,
+        title: '首页',
       ),
       body: Center(
         child: Column(
