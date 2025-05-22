@@ -1,0 +1,29 @@
+name: firefly
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.5.1              #? 状态管理
+  go_router: ^13.2.0                   #? 路由管理
+  dio: ^5.4.0                          #? 网络请求
+  json_annotation: ^4.9.0              #? 
+  freezed_annotation: ^2.4.1
+  shared_preferences: ^2.2.2
+  cupertino_icons: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  build_runner: ^2.4.9
+  freezed: ^2.4.6
+  json_serializable: ^6.8.0
+
+flutter:
+  uses-material-design: true
