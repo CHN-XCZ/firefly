@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
+/// 它是一个灵活的Scaffold组件，可以根据需要自定义AppBar和Body
 class FlexibleScaffold extends StatelessWidget {
   final Widget body;
-  final Widget appBar;
+  final Widget? appBar;
 
   const FlexibleScaffold({
     super.key,
     required this.body,
-    required this.appBar,
+    this.appBar,
   });
 
   @override
@@ -20,7 +21,7 @@ class FlexibleScaffold extends StatelessWidget {
             top: 0,
             left: 0,
             right: 0,
-            child: appBar,
+            child: appBar != null ? appBar! : const SizedBox(),
           ),
         ],
       ),

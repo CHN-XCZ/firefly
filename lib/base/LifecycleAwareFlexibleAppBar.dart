@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../config.dart';
 import '../theme/app_theme.dart';
 
 abstract class LifecycleAwareFlexibleAppBar extends StatefulWidget {
@@ -93,37 +94,31 @@ class _LifecycleAwareFlexibleAppBarState
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     final customTheme = getCustomTheme(context);
+    final backgroundColor = Theme.of(context).primaryColor.withOpacity(0.6);
     return ValueListenableBuilder(
       valueListenable: _scrolled,
       builder: (context, bool isScrolled, _) {
         return ClipRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(
-                sigmaX: isScrolled ? 60.0 : 0, sigmaY: isScrolled ? 60.0 : 0),
+                sigmaX: (isScrolled | !widget.enableScrollListener) ? 50.0 : 0,
+                sigmaY: (isScrolled | !widget.enableScrollListener) ? 50.0 : 0),
             child: Container(
-              height: 40 + statusBarHeight,
+              height: statusBarHeight + kAppBarHeight,
               padding: EdgeInsets.only(
                 top: statusBarHeight,
               ),
               decoration: BoxDecoration(
-                color: (isScrolled
-                    ? Theme.of(context).primaryColor.withOpacity(0.8)
+                color: ((isScrolled | !widget.enableScrollListener)
+                    ? backgroundColor
                     : widget.initialBackgroundColor), // 半透明
-                boxShadow: isScrolled
-                    ? [const BoxShadow(color: Colors.black12, blurRadius: 4)]
-                    : [],
                 border: Border(
                   bottom: BorderSide(
-                    color: widget.enableScrollListener
-                        ? isScrolled
-                            ? customTheme.borderColor
-                            : Colors.transparent
-                        : customTheme.borderColor,
-                    width: widget.enableScrollListener
-                        ? isScrolled
-                            ? 0.2
-                            : 0
-                        : 0.2,
+                    color: (isScrolled | !widget.enableScrollListener)
+                        ? customTheme.borderColor
+                        : Colors.transparent,
+                    width:
+                        (isScrolled | !widget.enableScrollListener) ? 0.4 : 0,
                   ),
                 ),
               ),
@@ -135,7 +130,9 @@ class _LifecycleAwareFlexibleAppBarState
                           icon: Icon(
                             size: 20,
                             CupertinoIcons.chevron_left,
-                            color: isScrolled ? Colors.black : Colors.white,
+                            color: (isScrolled | !widget.enableScrollListener)
+                                ? Colors.black
+                                : Colors.white,
                           ),
                           onPressed:
                               widget.onBack ?? () => Navigator.pop(context),

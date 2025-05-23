@@ -15,10 +15,10 @@ class HomePage extends ConsumerWidget {
     final count = ref.watch(counterProvider);
     final themeMode = ref.watch(themeModeProvider);
     return FlexibleScaffold(
-      appBar: ImprovisationAppBar(
-        ref: ref,
-        title: '首页',
-      ),
+      // appBar: ImprovisationAppBar(
+      //   ref: ref,
+      //   title: '首页',
+      // ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -12,9 +12,9 @@ class AppTheme {
     ),
     brightness: Brightness.light,
     primarySwatch: Colors.blue,
-    primaryColor: const Color.fromARGB(255, 232, 232, 232), //主题色
+    primaryColor: const Color.fromARGB(255, 255, 255, 255), //主题色
     scaffoldBackgroundColor:
-        const Color.fromARGB(255, 232, 232, 232), //整个页面（Scaffold）背景色
+        const Color.fromARGB(255, 255, 255, 255), //整个页面（Scaffold）背景色
     appBarTheme: const AppBarTheme(color: Colors.black),
     extensions: const <ThemeExtension<dynamic>>[
       AppCustomTheme(
